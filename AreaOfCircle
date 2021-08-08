@@ -1,4 +1,4 @@
 pi=3.14
-r=float(input("enter the radius"))
+r=float(input("Input the radius of circle:"))
 area=2*pi*r
-print("area of circle =%.2f"%area)
+print("the area of circle with radius %.2f is:%.2f"%r%area)
