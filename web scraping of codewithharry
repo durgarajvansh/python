@@ -1,0 +1,47 @@
+import requests
+from bs4 import BeautifulSoup
+url = "https://codewithharry.com"
+
+r = requests.get(url)
+htmlContent = r.content
+print(htmlContent)
+
+ #parse the content
+soup = BeautifulSoup(htmlContent,'html.parser')
+print(soup.prettify)
+
+#html tree traversal
+title = soup.title
+parse = soup.find_all('p')
+print(parse)
+
+print(soup.find('p')['class']) #get class 
+print(soup.find_all("p",class_="lead")) #find element of class lead
+print(soup.find('p').get_text()) #get text from tag p
+print(soup.get_text()) #get whole text
+
+anchors= soup.find_all('a')
+all_links = set()
+
+for link in anchors: #to get links present in website
+    if(link!= '#'):
+        linkText = "https://codewithharry.com"+link.get('href')
+        all_links.add('linkText')
+        print(linkText)
+
+navbarSupportedContent = soup.find(id='navbarSupportedContent') #to get content of id navbarSupportedContent
+for elem in navbarSupportedContent.contents:
+    print(elem)
+for item in navbarSupportedContent.stripped_strings:
+    print(item)
+
+print(navbarSupportedContent.parent) #to get its parents
+for item1 in navbarSupportedContent.parents:
+    print(item.name)
+
+print(navbarSupportedContent.next_sibling) #to get is siblings
+print(navbarSupportedContent.previous_sibling)
+
+elem1 = soup.select('#loginModal')  #to get element with selector id or class or anyother
+print(elem1)
+
